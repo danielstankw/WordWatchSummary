@@ -1,0 +1,4 @@
+# downloaded models
+llm/myollamamodels
+# where data is scraped
+/data/*

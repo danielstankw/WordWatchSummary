@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlencode, urlunparse
-import pandas as pd
 import logging
 import json 
+import os
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -100,17 +100,27 @@ class GoogleAdvancedSearch:
         return data
 
     def save_data(self, data, filename='data.json'):
-        with open(filename, 'w', encoding='utf-8') as file:
+        if not os.path.exists('data'):
+            os.makedirs('data')
+
+        filepath = os.path.join('data', filename)
+
+        with open(filepath, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
-        logging.info(f"Data saved to {filename}")
+        logging.info(f"Data saved to {filepath}")
     
     def save_links(self, data, filename='links.json'):
+        if not os.path.exists('data'):
+            os.makedirs('data')
+
+        filepath = os.path.join('data', filename)
+
         links = [item['link'] for item in data]
 
-        with open(filename, 'w', encoding='utf-8') as file:
+        with open(filepath, 'w', encoding='utf-8') as file:
             json.dump(links, file, indent=4)
 
-        logging.info(f"Links saved to {filename}")
+        logging.info(f"Links saved to {filepath}")
 
     def scrape(self, save_data=False, save_links=True):
         search_url = self.get_search_url()
