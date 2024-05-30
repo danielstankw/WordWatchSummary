@@ -2,3 +2,4 @@
 llm/myollamamodels
 # where data is scraped
 /data/*
+.env

@@ -5,7 +5,7 @@ Use LLM to sumamrize (100-150) the content of the article and define the sentime
 ## Task List
 - [ ] Cronjob (last part)
 - [ ] SMTP email sender (locally)
-- [ ] LLM url content summarizer (locally - or non locall but FREE)
-- [ ] Prompt chaining + prompt engineering
+- [x] LLM url content summarizer (locally - or non locall but FREE)
+- [x] Prompt chaining + prompt engineering
 - [x] Google Search URL generator + save: `main.py`
 - [x] Extract content of the URLs and save them: `link_scrape.py`
