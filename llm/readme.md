@@ -7,7 +7,7 @@ docker rm ollama
 docker pull ollama/ollama
 # rerun the container
 docker run -d --gpus=all -v /home/stankod1/scraper/llm/myollamamodels:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-
+docker start ollama
 # non interact
 docker exec ollama ollama run gemma:2b
 # interacti

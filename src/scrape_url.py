@@ -38,7 +38,7 @@ def scrape_and_save(url):
         print(f"Failed to retrieve {url}")
 
 
-def main():
+def scrape_url(wait_time=5):
     # Load URLs from the JSON file
     with open("./data/links.json", "r") as file:
         urls = json.load(file)
@@ -50,8 +50,8 @@ def main():
     # Scrape each URL and save the content
     for url in urls:
         scrape_and_save(url)
-        time.sleep(5)
+        time.sleep(wait_time)
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     scrape_url()

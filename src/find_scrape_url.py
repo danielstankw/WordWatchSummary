@@ -87,6 +87,7 @@ class GoogleAdvancedSearch:
         return soup.find_all("div", {"class": "g"})
 
     def extract_data(self, all_data):
+        # extracting data from HTML
         data = []
         position = 0
         for item in all_data:
@@ -106,16 +107,6 @@ class GoogleAdvancedSearch:
                 data.append(entry)
         return data
 
-    def save_data(self, data, filename="data.json"):
-        if not os.path.exists("data"):
-            os.makedirs("data")
-
-        filepath = os.path.join("data", filename)
-
-        with open(filepath, "w", encoding="utf-8") as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
-        logging.info(f"Data saved to {filepath}")
-
     def save_links(self, data, filename="links.json"):
         if not os.path.exists("data"):
             os.makedirs("data")
@@ -129,7 +120,7 @@ class GoogleAdvancedSearch:
 
         logging.info(f"Links saved to {filepath}")
 
-    def scrape(self, save_data=False, save_links=True):
+    def find_url(self):
         search_url = self.get_search_url()
         logging.info(f"Using URL: {search_url}")
         html = self.fetch_html(search_url)
@@ -137,33 +128,28 @@ class GoogleAdvancedSearch:
             all_data = self.parse_html(html)
             data = self.extract_data(all_data)
 
-            if save_data:
-                self.save_data(data)
-            if save_links:
-                self.save_links(data)
-
+            self.save_links(data)
             logging.info("Scraping completed successfully")
 
-        return data
 
 
-if __name__ == "__main__":
-    search = GoogleAdvancedSearch()
+# if __name__ == "__main__":
+#     search = GoogleAdvancedSearch()
 
-    # Customize the search parameters
-    search.set_all_words("")
-    search.set_exact_phrase("albert stankowski")
-    search.set_any_words("")
-    search.set_none_words("")
-    search.set_number_range("", "")
-    search.set_language("en")
-    search.set_region("")
-    # d - day, w - week, m - month, y - year, all - anytime
-    search.set_last_update("w")
-    search.set_site_or_domain("")
-    search.set_terms_appearing("")
-    search.set_file_type("")
-    search.set_usage_rights("")
+#     # Customize the search parameters
+#     search.set_all_words("")
+#     search.set_exact_phrase("")
+#     search.set_any_words("")
+#     search.set_none_words("")
+#     search.set_number_range("", "")
+#     search.set_language("en")
+#     search.set_region("")
+#     # d - day, w - week, m - month, y - year, all - anytime
+#     search.set_last_update("d")
+#     search.set_site_or_domain("")
+#     search.set_terms_appearing("")
+#     search.set_file_type("")
+#     search.set_usage_rights("")
 
-    # Perform the scraping
-    data = search.scrape(save_data=False, save_links=True)
+#     # Perform the scraping
+#     search.find_url()
