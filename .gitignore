@@ -3,3 +3,6 @@ llm/myollamamodels
 # where data is scraped
 /data/*
 .env
+# Ignore Python cache files
+__pycache__/
+*.pyc

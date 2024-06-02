@@ -103,7 +103,7 @@ class GoogleAdvancedSearch:
                         else None
                     ),
                     "position": position,
-                }
+            }
                 data.append(entry)
         return data
 
@@ -130,26 +130,3 @@ class GoogleAdvancedSearch:
 
             self.save_links(data)
             logging.info("Scraping completed successfully")
-
-
-
-# if __name__ == "__main__":
-#     search = GoogleAdvancedSearch()
-
-#     # Customize the search parameters
-#     search.set_all_words("")
-#     search.set_exact_phrase("")
-#     search.set_any_words("")
-#     search.set_none_words("")
-#     search.set_number_range("", "")
-#     search.set_language("en")
-#     search.set_region("")
-#     # d - day, w - week, m - month, y - year, all - anytime
-#     search.set_last_update("d")
-#     search.set_site_or_domain("")
-#     search.set_terms_appearing("")
-#     search.set_file_type("")
-#     search.set_usage_rights("")
-
-#     # Perform the scraping
-#     search.find_url()

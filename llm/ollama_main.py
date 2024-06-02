@@ -19,7 +19,7 @@ prompt_template = PromptTemplate.from_template(
 1. Craft a summary that is detailed, thorough, in-depth, and complex, while maintaining clarity.
 2. Incorporate main ideas and essential information, eliminating extraneous language and focusing on critical aspects.
 3. Rely strictly on the provided text, without including external information.
-4. Define the sentiment of the article and display it as: SENTIMENT: positive/ negative
+4. If the content is not an article, output "Summary not generated as the content is not an article" instead.
 
 By following this optimized prompt, you will generate an effective summary that encapsulates the essence of the given text in a clear, detailed, and reader-friendly manner. Optimize output as markdown file.
 
@@ -50,17 +50,21 @@ def summarize_articles():
 
             # if document content exists
             if doc_content:
-                llm_summary = llm_chain.invoke(doc_content)
-                # print(llm_summary)
+                try:
+                    llm_summary = llm_chain.invoke(doc_content)
+                
 
-                # save the summary under same name in summary path!
-                summary_file = {"url": doc_url, "summary": llm_summary}
-                summary_json = json.dumps(summary_file, indent=4)
-                summary_file_path = os.path.join(summary_path, filename)
+                    # save the summary under same name in summary path!
+                    summary_file = {"url": doc_url, "summary": llm_summary}
+                    summary_json = json.dumps(summary_file, indent=4)
+                    summary_file_path = os.path.join(summary_path, filename)
 
-                # Save the output to a new JSON file
-                with open(summary_file_path, "w") as summary_file:
-                    summary_file.write(summary_json)
+                    # Save the output to a new JSON file
+                    with open(summary_file_path, "w") as summary_file:
+                        summary_file.write(summary_json)
+
+                except Exception as e:
+                    print(f"Make sure your are running ollama! - Exception: {e}")
 
 if __name__ == "__main__":
     # Ensuring the script runs only when executed directly

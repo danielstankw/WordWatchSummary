@@ -12,7 +12,7 @@ logging.basicConfig(
 def configure_search(search):
     """Customize the GoogleAdvancedSearch parameters."""
     search.set_all_words("")
-    search.set_exact_phrase("Museum of War")
+    search.set_exact_phrase("Elon Musk")
     search.set_any_words("")
     search.set_none_words("")
     search.set_number_range("", "")
@@ -41,8 +41,10 @@ def main():
         # Log the error
         logging.error(f"An error occurred: {e}")
 
+    # LLMs summarizing
     summarize_articles()
 
+    # Send mail
     send_mail()
 
 if __name__ == "__main__":
