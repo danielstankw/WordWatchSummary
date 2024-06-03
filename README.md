@@ -1,8 +1,13 @@
-# News Scrapper + Summarizer 
-The purpose of this application/ python script is to search for the word of interest in Google. Furthermore, the application will find the occurences of the word in various articles and collect the corresponding url's. 
-The LLM of a choice will generate the summary of the scrapped articles. 
-Once all urls are scrapped, summarized and edited, they will be embeded and sent via SMTP to the user.
+# "WordWatch Summary"
+The goal of this Python application is to streamline the process of finding, summarizing, and sharing news articles that mention a specific word of interest. Here’s how it works:
 
+1. **Search and Scrape:** The application searches for the specified word on Google, identifying occurrences in various articles, and collects the corresponding URLs.  
+2. **Summarization:** Using a chosen large language model (LLM), the application generates concise summaries of the scraped articles.  
+3. **Editing:** The summaries are reviewed and edited for clarity and coherence.  
+4. **Email Delivery:** The edited summaries are embedded into an email and sent to the user via SMTP.
+
+
+*An example of email*
 
 <img src="images/smtp.png" alt="alt text" width="1000">
 
